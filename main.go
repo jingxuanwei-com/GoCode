@@ -11,6 +11,8 @@ func main() {
 		fmt.Println("You are 9%")
 	case 8:
 		fmt.Println("You are 8%")
+		//switch传透下一层
+		fallthrough
 	case 7:
 		fmt.Println("You are 7%")
 	case 6:

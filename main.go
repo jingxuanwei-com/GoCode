@@ -3,10 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	//	for循环输出
-	//	循环次数i1 < 10
-	for i1 := 0; i1 < 10; i1++ {
-		fmt.Println("循环第", i1+1, "次")
-	}
+	//调用函数
+	fmt.Println(cal(10, 20))
+}
 
+// 新建函数cal
+func cal(num1 int, num2 int) int {
+	return num1 + num2
 }

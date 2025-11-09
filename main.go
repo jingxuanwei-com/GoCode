@@ -1,20 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func main() {
-	test()
+	err := test()
+	if err != nil {
+		fmt.Println("自定义错误", err)
+		//错误，强制程序中断
+		panic(err)
+	}
 	fmt.Println("程序执行成功")
 }
 
-func test() {
-	defer func() {
-		err := recover()
-		if err != nil {
-			fmt.Println("test发生错误", err)
-		}
-	}()
+func test() error {
 	a := 1
 	b := 0
-	fmt.Println(a / b)
+	if b == 0 {
+		return errors.New("除数不能为0哦")
+	} else {
+		fmt.Println(a / b)
+		return nil
+	}
 }

@@ -1,27 +1,16 @@
 package main
 
-import (
-	"errors"
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	err := test()
-	if err != nil {
-		fmt.Println("自定义错误", err)
-		//错误，强制程序中断
-		panic(err)
+	var a [5]int
+	//普通for循环
+	for i := 0; i < len(a); i++ {
+		fmt.Printf("输入第%d位学生的成绩：", i+1)
+		fmt.Scanln(&a[i])
 	}
-	fmt.Println("程序执行成功")
-}
-
-func test() error {
-	a := 1
-	b := 0
-	if b == 0 {
-		return errors.New("除数不能为0哦")
-	} else {
-		fmt.Println(a / b)
-		return nil
+	//for range循环
+	for a, b := range a {
+		fmt.Printf("第%d个学生成绩为%d\n", a, b)
 	}
 }

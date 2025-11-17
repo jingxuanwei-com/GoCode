@@ -1,62 +1,33 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
+	//创建结构体
+	var t1 Teacher
+	fmt.Println(t1)
+	t1.Name = "马泽"
+	t1.Age = 45
+	t1.School = "清华大学"
+	fmt.Printf("%p\n", &t1)
+	fmt.Println(t1)
+	fmt.Println(t1.Name)
 
-	//创建方式2
-	b := make(map[int]string)
-	//增加
-	b[100] = "Hello"
-	b[200] = "World"
+	var t2 = Teacher{"马碧", 44, "马龙大学"}
+	fmt.Println(t2)
 
-	//修改
-	b[200] = "wd"
-	fmt.Println(b)
+	var t3 = new(Teacher)
+	(*t3).Name = "ssh"
+	(*t3).Age = 45
+	(*t3).School = "阿米诺斯"
+	fmt.Printf("%p\n", &t3)
+	fmt.Println(t3)
+	fmt.Println(*t3)
+}
 
-	//删除
-	delete(b, 200)
-	fmt.Println(b)
-
-	//查找
-	value, flag := b[100]
-	fmt.Println("查找的内容", value)
-	fmt.Println("查找是否成功", flag)
-
-	//获取长度
-	fmt.Println("长度", len(b))
-
-	//遍历
-	for i, s := range b {
-		fmt.Printf("第%d个是:%s\n", i, s)
-	}
-
-	//双重map
-	c := make(map[string]map[int]string)
-	c["a"] = make(map[int]string)
-	c["a"][1555] = "A"
-	c["a"][2666] = "B"
-	c["a"][3777] = "C"
-	c["a"][4888] = "D"
-	fmt.Println(c)
-
-	d := map[string]map[int]string{
-		"a": {
-			1555: "A",
-			2666: "B",
-		},
-		"b": {
-			1555: "A",
-			2666: "B",
-		},
-	}
-	for s, m := range d {
-		fmt.Printf("学生班级为%v\n", s)
-		for i, i2 := range m {
-			fmt.Printf("学生学号为%v 姓名为%v\n", i, i2)
-		}
-
-	}
+// Teacher 结构体的定义
+type Teacher struct {
+	Name   string
+	Age    int
+	School string
 }

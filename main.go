@@ -3,20 +3,28 @@ package main
 import "fmt"
 
 func main() {
-	var s1 Student
-	var s2 Stu
-	s1.Age = 10
-	s2.Age = 20
-	fmt.Println(s1)
-	fmt.Println(s2)
-	s1 = Student(s2)
-	fmt.Println(s1)
+	var p Person
+	p.Name = "John Doe"
+	p.test()
+	fmt.Println(p.Name)
+	p.test1()
+	fmt.Println(p.Name)
 }
 
-type Student struct {
-	Age int
+// Person 定义结构体
+type Person struct {
+	Name string
 }
 
-type Stu struct {
-	Age int
+// 给Person结构体绑定方法test
+func (s Person) test() {
+	fmt.Println(s.Name)
+	s.Name = "sssbbb"
+
+}
+
+// 给Person结构体绑定方法test,指针传递
+func (s *Person) test1() {
+	fmt.Println(s.Name)
+	s.Name = "佳佳"
 }

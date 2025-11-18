@@ -1,30 +1,24 @@
 package main
 
-import "fmt"
+import "github.com/gin-gonic/gin"
 
 func main() {
-	var p Person
-	p.Name = "John Doe"
-	p.test()
-	fmt.Println(p.Name)
-	p.test1()
-	fmt.Println(p.Name)
-}
-
-// Person 定义结构体
-type Person struct {
-	Name string
-}
-
-// 给Person结构体绑定方法test
-func (s Person) test() {
-	fmt.Println(s.Name)
-	s.Name = "sssbbb"
-
-}
-
-// 给Person结构体绑定方法test,指针传递
-func (s *Person) test1() {
-	fmt.Println(s.Name)
-	s.Name = "佳佳"
+	r := gin.Default()
+	//从服务器请求资源
+	r.GET("/", func(c *gin.Context) {
+		c.String(200, "这是一个get请求，用于取出资源")
+	})
+	r.POST("/add", func(c *gin.Context) {
+		c.String(200, "这是一个post--主要用于增加数据")
+	})
+	r.PUT("/edit", func(c *gin.Context) {
+		c.String(200, "这是一个put请求 主要用于编辑数据")
+	})
+	r.DELETE("/delete", func(c *gin.Context) {
+		c.String(200, "这是一个delete请求 主要用于删除数据")
+	})
+	err := r.Run()
+	if err != nil {
+		return
+	} // listen and serve on 0.0.0.0:8080
 }

@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    padding: 0.8rem 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 2px;
+    transition: transform 0.3s ease;
+}
+.navbar .logo:hover {
+    transform: scale(1.1) rotate(-3deg);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+.nav-links li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #ffcc00;
+    transition: width 0.3s ease;
+}
+.nav-links li a:hover {
+    color: #ffcc00;
+}
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+main {
+    padding: 2rem;
+}
+main h1, main h2 {
+    color: #2a5298;
+}
+main p {
+    line-height: 1.6;
+}

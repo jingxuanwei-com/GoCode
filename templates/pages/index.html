@@ -1,0 +1,9 @@
+{{ define "pages/index.html" }}
+    {{ template "layout/base.html" . }}
+
+    {{ block "title" . }}首页{{ end }}
+    {{ block "content" . }}
+        <h1>欢迎来到我的 Gin 网站</h1>
+        <p>这里是首页内容，可以展示最新文章或公告。</p>
+    {{ end }}
+{{ end }}

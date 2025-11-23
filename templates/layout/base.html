@@ -1,0 +1,17 @@
+{{ define "layout/base.html" }}
+    <!DOCTYPE html>
+    <html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ block "title" . }}默认标题{{ end }}</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+    {{ template "layout/navbar.html" . }}
+
+    <main>
+        {{ block "content" . }}{{ end }}
+    </main>
+    </body>
+    </html>
+{{ end }}

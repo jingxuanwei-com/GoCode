@@ -1,0 +1,14 @@
+{{ define "contact" }}
+    {{ template "base" . }}
+
+    {{ block "title" . }}联系我们{{ end }}
+    {{ block "content" . }}
+        <h2>联系我们</h2>
+        <form>
+            <label>姓名：</label><input type="text" name="name"><br>
+            <label>邮箱：</label><input type="email" name="email"><br>
+            <label>留言：</label><textarea name="message"></textarea><br>
+            <button type="submit">提交</button>
+        </form>
+    {{ end }}
+{{ end }}

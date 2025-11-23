@@ -1,4 +1,4 @@
-{{ define "layout/base.html" }}
+{{ define "base" }}
     <!DOCTYPE html>
     <html lang="zh">
     <head>
@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="/static/style.css">
     </head>
     <body>
-    {{ template "layout/navbar.html" . }}
+    {{ template "navbar" . }}
 
     <main>
         {{ block "content" . }}{{ end }}

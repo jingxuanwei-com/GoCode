@@ -15,20 +15,15 @@ func main() {
 
 	// 路由
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(200, "pages/index.html", gin.H{
-			"Title": "首页",
-		})
+		c.HTML(200, "index", gin.H{})
 	})
 
 	r.GET("/about", func(c *gin.Context) {
-		c.HTML(200, "pages/about.html", gin.H{
-			"Title": "关于我们",
-		})
+		c.HTML(200, "about", gin.H{})
 	})
 
 	r.GET("/articles", func(c *gin.Context) {
-		c.HTML(200, "pages/articles.html", gin.H{
-			"Title": "文章列表",
+		c.HTML(200, "articles", gin.H{
 			"Articles": []map[string]string{
 				{"Title": "Gin框架入门", "Date": "2025-11-23"},
 				{"Title": "Go语言最佳实践", "Date": "2025-11-20"},
@@ -37,9 +32,7 @@ func main() {
 	})
 
 	r.GET("/contact", func(c *gin.Context) {
-		c.HTML(200, "pages/contact.html", gin.H{
-			"Title": "联系我们",
-		})
+		c.HTML(200, "contact", gin.H{})
 	})
 
 	r.Run(":8080")

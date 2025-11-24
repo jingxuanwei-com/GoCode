@@ -4,36 +4,44 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type Article struct {
+	Title   string
+	Content string
+}
+
 func main() {
 	r := gin.Default()
-
-	// 静态资源映射
-	r.Static("/static", "./static")
-
 	// 加载模板（支持多层目录）
 	r.LoadHTMLGlob("templates/**/*")
+	r.Static("/static", "./static")
 
 	// 路由
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(200, "index", gin.H{})
-	})
+		c.HTML(200, "pages/index.html", gin.H{
+			"title": "Main website",
+			"score": 60,
+			"hobby": []string{"吃饭", "睡觉", "打豆豆"},
+			"newsList": []interface{}{
+				Article{
+					Title:   "新闻标题",
+					Content: "新闻内容1",
+				},
+				Article{
+					Title:   "新闻标题2",
+					Content: "新闻内容2",
+				},
+			},
+			"newsList2": []string{},
 
-	r.GET("/about", func(c *gin.Context) {
-		c.HTML(200, "about", gin.H{})
-	})
-
-	r.GET("/articles", func(c *gin.Context) {
-		c.HTML(200, "articles", gin.H{
-			"Articles": []map[string]string{
-				{"Title": "Gin框架入门", "Date": "2025-11-23"},
-				{"Title": "Go语言最佳实践", "Date": "2025-11-20"},
+			"news": Article{
+				Title:   "标题",
+				Content: "测试2",
 			},
 		})
 	})
 
-	r.GET("/contact", func(c *gin.Context) {
-		c.HTML(200, "contact", gin.H{})
-	})
-
-	r.Run(":8080")
+	err := r.Run(":8080")
+	if err != nil {
+		return
+	}
 }

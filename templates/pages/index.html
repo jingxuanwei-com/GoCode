@@ -1,9 +1,56 @@
-{{ define "index" }}
-    {{ template "base" . }}
+{{define "pages/index.html"}}
+    <!doctype html>
+    <html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{.title}}</title>
+    </head>
+    <body>
+    {{/*输出*/}}
+    <h2>{{.title}}</h2>
 
-    {{ block "title" . }}首页{{ end }}
-    {{ block "content" . }}
-        <h1>欢迎来到我的 Gin 网站</h1>
-        <p>这里是首页内容，可以展示最新文章或公告。</p>
-    {{ end }}
-{{ end }}
+    {{/*定义变量*/}}
+    {{$t :=.title}}
+    <h4>{{$t}}</h4>
+
+
+    {{/*条件判断*/}}
+    {{if ge .score 60}}
+        <p>及格</p>
+    {{else}}
+        <P></P>
+    {{end}}
+
+    {{/*循环遍历数据*/}}
+
+    {{range $key,$value:=.hobby}}
+        <ul>
+            <li>{{$key}}--{{$value}}</li>
+        </ul>
+    {{end}}
+
+    {{range $key,$value:=.newsList}}
+        <ul>
+            <li>{{$key}}--{{$value.Title}}--{{$value.Content}}</li>
+        </ul>
+    {{end}}
+
+    {{range $key,$value:=.newsList2}}
+        <ul>
+            <li>{{$key}}--{{$value.Title}}--{{$value.Content}}</li>
+        </ul>
+    {{else}}
+        <li>没有数据</li>
+    {{end}}
+
+    {{/*结构结构*/}}
+    {{with .news}}
+        {{.Title}}
+        {{.Content}}
+    {{end}}
+
+
+    </body>
+    </html>
+{{end}}

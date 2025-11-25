@@ -1,14 +1,19 @@
-{{ define "base" }}
+{{/* 定义基础模板，作为其他页面模板的布局基础 */}}
+{{ define "layout/base" }}
     <!DOCTYPE html>
     <html lang="zh">
     <head>
         <meta charset="UTF-8">
+        {{/* 标题块定义 - 允许子模板重写标题内容 */}}
         <title>{{ block "title" . }}默认标题{{ end }}</title>
+        {{/* 引入静态样式文件 */}}
         <link rel="stylesheet" href="/static/style.css">
     </head>
     <body>
+    {{/* 引入导航栏模板 */}}
     {{ template "navbar" . }}
 
+    {{/* 主内容区域定义 - 子模板应在此处填充具体内容 */}}
     <main>
         {{ block "content" . }}{{ end }}
     </main>

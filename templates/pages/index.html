@@ -1,4 +1,5 @@
-{{define "pages/index.html"}}
+{{/* 定义index页面模板 */}}
+{{define "pages/index"}}
     <!doctype html>
     <html lang="zh">
     <head>
@@ -7,50 +8,54 @@
         <title>{{.title}}</title>
     </head>
     <body>
-    {{/*输出*/}}
+    {{template "layout/navbar"}}
+    {{/* 基本数据输出示例 - 直接渲染标题变量 */}}
     <h2>{{.title}}</h2>
 
-    {{/*定义变量*/}}
-    {{$t :=.title}}
+    {{/* 模板变量定义示例 - 将标题赋值给局部变量t */}}
+    {{$t := .title}}
     <h4>{{$t}}</h4>
 
-
-    {{/*条件判断*/}}
-    {{if ge .score 60}}
+    {{/* 条件判断示例 - 根据score值判断是否及格 */}}
+    {{if ge .score 60}} <!-- ge: 大于等于 -->
         <p>及格</p>
     {{else}}
-        <P></P>
+        <p></p>
     {{end}}
 
-    {{/*循环遍历数据*/}}
-
-    {{range $key,$value:=.hobby}}
+    {{/* 简单数组循环遍历示例 */}}
+    {{range $key, $value := .hobby}} <!-- 遍历爱好列表 -->
         <ul>
-            <li>{{$key}}--{{$value}}</li>
+            <li>{{$key}}--{{$value}}</li> <!-- 输出索引和值 -->
         </ul>
     {{end}}
 
-    {{range $key,$value:=.newsList}}
+    {{/* 结构体数组循环遍历示例 */}}
+    {{range $key, $value := .newsList}} <!-- 遍历文章列表 -->
         <ul>
-            <li>{{$key}}--{{$value.Title}}--{{$value.Content}}</li>
+            <li>{{$key}}--{{$value.Title}}--{{$value.Content}}</li> <!-- 输出索引和文章属性 -->
         </ul>
     {{end}}
 
-    {{range $key,$value:=.newsList2}}
+    {{/* 空数组处理示例 - 当newsList2为空时显示提示信息 */}}
+    {{range $key, $value := .newsList2}}
         <ul>
             <li>{{$key}}--{{$value.Title}}--{{$value.Content}}</li>
         </ul>
     {{else}}
-        <li>没有数据</li>
+        <li>没有数据</li> <!-- 当数组为空时执行 -->
     {{end}}
 
-    {{/*结构结构*/}}
-    {{with .news}}
-        {{.Title}}
-        {{.Content}}
+    {{/* 结构体数据访问示例 - 使用with语句简化结构体属性访问 */}}
+    {{with .news}} <!-- 针对news结构体设置上下文 -->
+        {{.Title}}   <!-- 直接访问Title属性，等同于.news.Title -->
+        {{.Content}} <!-- 直接访问Content属性，等同于.news.Content -->
     {{end}}
+    <br>
 
-
+    {{/* 自定义模板函数使用示例 */}}
+    {{.data}} <!-- 输出原始时间戳 -->
+    {{UnixToTime .data}} <!-- 使用自定义函数将时间戳转换为格式化日期 -->
     </body>
     </html>
 {{end}}

@@ -1,0 +1,135 @@
+/* 
+ * navbar.css - 网站导航栏样式文件
+ * 负责定义网站的导航栏和主内容区域的基本样式
+ */
+
+/* 
+ * 全局样式设置
+ * 重置浏览器默认边距，设置全局字体和背景色
+ */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+    /* 为固定导航栏留出顶部空间 */
+    padding-top: 70px; /* 大于或等于导航栏高度 */
+}
+
+/* 
+ * 导航栏容器样式
+ * 使用flex布局实现两端对齐的导航栏，应用渐变背景和阴影效果
+ * 添加position: fixed使其固定在页面顶部
+ */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    padding: 0.8rem 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    
+    /* 固定定位相关样式 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* 确保导航栏在其他元素之上 */
+}
+
+/* 
+ * 网站Logo样式
+ * 设置Logo字体大小、粗细和颜色，添加悬停动画效果
+ */
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 2px;
+    transition: transform 0.3s ease;
+}
+
+/* 
+ * Logo悬停效果
+ * 鼠标悬停时放大并轻微旋转Logo
+ */
+.navbar .logo:hover {
+    transform: scale(1.1) rotate(-3deg);
+}
+
+/* 
+ * 导航链接列表样式
+ * 移除默认列表样式，使用flex布局排列导航项
+ */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* 
+ * 导航链接样式
+ * 移除下划线，设置文字颜色和粗细，为动画效果做准备
+ */
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* 
+ * 导航链接下划线效果
+ * 使用伪元素创建底部横线，初始宽度为0
+ */
+.nav-links li a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #ffcc00;
+    transition: width 0.3s ease;
+}
+
+/* 
+ * 导航链接悬停文字颜色变化
+ * 鼠标悬停时文字变为金色
+ */
+.nav-links li a:hover {
+    color: #ffcc00;
+}
+
+/* 
+ * 导航链接下划线动画
+ * 鼠标悬停时底部横线从0扩展到100%宽度
+ */
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+/* 
+ * 主内容区域样式
+ * 设置主内容区域的内边距
+ */
+main {
+    padding: 2rem;
+}
+
+/* 
+ * 主内容区域标题样式
+ * 设置主内容区域中标题的颜色
+ */
+main h1, main h2 {
+    color: #2a5298;
+}
+
+/* 
+ * 主内容区域段落样式
+ * 设置主内容区域中段落的行高
+ */
+main p {
+    line-height: 1.6;
+}

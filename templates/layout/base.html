@@ -4,19 +4,24 @@
     <html lang="zh">
     <head>
         <meta charset="UTF-8">
-        {{/* 标题块定义 - 允许子模板重写标题内容 */}}
         <title>{{ block "title" . }}默认标题{{ end }}</title>
-        {{/* 引入静态样式文件 */}}
         <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="/static/navbar.css">
+        <link rel="stylesheet" href="/static/footer.css"> <!-- 引入底部导航栏样式 -->
+
+        {{/* 允许子模板添加额外的CSS */}}
+        {{ block "styles" . }}{{ end }}
     </head>
     <body>
-    {{/* 引入导航栏模板 */}}
-    {{ template "navbar" . }}
+    {{template "layout/navbar"}}
 
-    {{/* 主内容区域定义 - 子模板应在此处填充具体内容 */}}
     <main>
         {{ block "content" . }}{{ end }}
     </main>
+    
+    <!-- 引入底部导航栏 -->
+    {{ template "layout/footer" . }}
+    
     </body>
     </html>
 {{ end }}

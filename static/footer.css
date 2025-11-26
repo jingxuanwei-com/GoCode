@@ -1,0 +1,167 @@
+/* 
+ * footer.css - 网站底部导航栏样式文件
+ * 负责定义网站底部区域的样式和布局
+ */
+
+/* 
+ * 底部导航栏容器样式
+ * 设置背景色、文字颜色和内边距
+ */
+.footer {
+    background: #1e3c72;
+    color: #fff;
+    padding: 2rem 0 1rem;
+    margin-top: auto; /* 确保底部栏在页面底部 */
+}
+
+/* 
+ * 底部内容容器样式
+ * 使用flex布局实现多列布局
+ */
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* 
+ * 底部各区域通用样式
+ * 设置区域间距和最小宽度
+ */
+.footer-section {
+    margin-bottom: 1.5rem;
+    min-width: 200px;
+}
+
+/* 
+ * 底部区域标题样式
+ * 设置标题大小和边框
+ */
+.footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ffcc00;
+    border-bottom: 2px solid #ffcc00;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* 
+ * 底部联系信息段落样式
+ */
+.footer-section p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+/* 
+ * 底部链接列表样式
+ * 移除默认列表样式
+ */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 
+ * 底部链接样式
+ * 设置链接颜色和过渡效果
+ */
+.footer-links li a {
+    color: #f0f0f0;
+    text-decoration: none;
+    display: block;
+    padding: 0.4rem 0;
+    transition: all 0.3s ease;
+}
+
+/* 
+ * 底部链接悬停效果
+ * 鼠标悬停时改变颜色和添加左边距
+ */
+.footer-links li a:hover {
+    color: #ffcc00;
+    padding-left: 0.5rem;
+}
+
+/* 
+ * 社交媒体链接列表样式
+ * 移除默认列表样式并使用flex布局
+ */
+.social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+/* 
+ * 社交媒体链接样式
+ * 设置链接背景色和内边距
+ */
+.social-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* 
+ * 各社交媒体平台特定样式
+ */
+.social-link.weibo {
+    background: #e6162d;
+}
+
+.social-link.wechat {
+    background: #07c160;
+}
+
+.social-link.github {
+    background: #333;
+}
+
+/* 
+ * 社交媒体链接悬停效果
+ */
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* 
+ * 底部版权信息区域样式
+ * 设置上边框和居中对齐
+ */
+.footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* 
+ * 响应式设计 - 小屏幕适配
+ */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+    
+    .footer-section {
+        min-width: 100%;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}

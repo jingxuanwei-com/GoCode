@@ -1,0 +1,40 @@
+{{/* 定义底部导航栏模板，包含网站底部信息和链接 */}}
+{{ define "layout/footer" }}
+    {{/*<link rel="stylesheet" href="/static/footer.css">*/}}
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- 联系信息部分 -->
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱: mail@nannanwu.com</p>
+                <p>电话: +86 123 4567 8910</p>
+            </div>
+
+            <!-- 快速链接部分 -->
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul class="footer-links">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/about">关于我们</a></li>
+                    <li><a href="/privacy">隐私政策</a></li>
+                    <li><a href="/terms">使用条款</a></li>
+                </ul>
+            </div>
+
+            <!-- 社交媒体部分 -->
+            <div class="footer-section">
+                <h3>关注我们</h3>
+                <ul class="social-links">
+                    <li><a href="#" class="social-link weibo">微博</a></li>
+                    <li><a href="#" class="social-link wechat">微信</a></li>
+                    <li><a href="#" class="social-link github">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 版权信息 -->
+        <div class="footer-bottom">
+            <p>&copy; {{.year}} MyGinSite. 保留所有权利。</p>
+        </div>
+    </footer>
+{{ end }}

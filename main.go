@@ -70,8 +70,14 @@ func main() {
 		})
 	})
 
+	r.GET("/test", func(c *gin.Context) {
+		c.HTML(200, "pages/test", gin.H{
+			"title": "Test website",
+		})
+	})
+
 	// 启动HTTP服务器，监听在8081端口
-	err := r.Run(":8081")
+	err := r.Run(":8088")
 	if err != nil {
 		return
 	}

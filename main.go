@@ -12,6 +12,18 @@ type Article struct {
 	Title   string // 文章标题
 	Content string // 文章内容
 }
+type UserInfo struct {
+	Username string `json:"username" form:"username"` // 用户名
+	Password string `json:"password" form:"password"` // 密码
+	Age      int    `json:"age" form:"age"`           // 年龄
+}
+
+// UserInfoXML 处理xml的结构体
+type UserInfoXML struct {
+	Username string `json:"username" xml:"username"` // 用户名
+	Password string `json:"password" xml:"password"` // 密码
+	Age      int    `json:"age" xml:"age"`           // 年龄
+}
 
 // UnixToTime 将Unix时间戳转换为格式化的日期时间字符串
 // 参数：
@@ -71,9 +83,67 @@ func main() {
 	})
 
 	r.GET("/test", func(c *gin.Context) {
-		c.HTML(200, "pages/test", gin.H{
-			"title": "Test website",
+		username := c.Query("username")
+		age := c.Query("age")
+		page := c.DefaultQuery("page", "1")
+
+		//Get请求值传递
+		//http://0.0.0.0:8088/test?username=%E9%9A%8F%E4%BE%BF&age=%E6%88%91%E6%98%AF&page=0
+		c.JSON(200, gin.H{
+			"username": username,
+			"age":      age,
+			"page":     page,
 		})
+	})
+
+	// 渲染user.html模板
+	r.GET("/user", func(c *gin.Context) {
+		c.HTML(200, "pages/user", gin.H{
+			"title": "用户页面",
+		})
+	})
+
+	//Get post请求值传递
+	r.POST("/addUser", func(c *gin.Context) {
+		username := c.PostForm("username")
+		passwd := c.PostForm("password")
+		age := c.PostForm("age")
+		page := c.DefaultPostForm("page", "1")
+
+		//Post请求值传递
+		//http://0.0.0.0:8088/test?username=%E9%9A%8F%E4%BE%BF&age=%E6%88%91%E6%98%AF&page=0
+		c.JSON(200, gin.H{
+			"username": username,
+			"age":      age,
+			"page":     page,
+			"password": passwd,
+		})
+	})
+
+	//获取post到结构体
+	r.POST("/addUser2", func(c *gin.Context) {
+		var user UserInfo
+		err := c.Bind(&user)
+		if err != nil {
+			return
+		}
+		c.JSON(200, user)
+	})
+
+	//获取post到xml转换为json结构体
+	r.POST("/addUserXML", func(c *gin.Context) {
+		var user UserInfoXML
+		err := c.BindXML(&user)
+		if err != nil {
+			return
+		}
+		c.JSON(200, user)
+	})
+
+	//动态路由传值
+	r.GET("/list/:cid", func(c *gin.Context) {
+		cid := c.Param("cid")
+		c.String(200, "%v", cid)
 	})
 
 	// 启动HTTP服务器，监听在8081端口

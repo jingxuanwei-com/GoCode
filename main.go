@@ -1,8 +1,6 @@
 package main
 
 import (
-	"awesomeProject/router"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,12 +14,6 @@ func main() {
 
 	// 配置静态文件目录，将./static目录映射到URL路径/static
 	r.Static("/static", "./static")
-
-	router.AdminRouterInit(r)
-
-	router.ApiRouterInit(r)
-
-	router.DefaultRouterInit(r)
 
 	// 启动HTTP服务器，监听在8081端口
 	err := r.Run(":8088")

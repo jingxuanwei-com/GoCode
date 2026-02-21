@@ -8,7 +8,7 @@ type DefaultController struct {
 }
 
 func (con DefaultController) Index(c *gin.Context) {
-	c.String(200, "首页")
+	c.HTML(200, "pages/index", gin.H{})
 }
 func (con DefaultController) Article(c *gin.Context) {
 	c.String(200, "文章详情")

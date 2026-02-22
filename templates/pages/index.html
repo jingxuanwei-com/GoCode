@@ -12,6 +12,7 @@
     {{template "layout/navbar"}}
 
     <h2>{{.title}}</h2>
+    <h2>{{UnixToTime .t}}</h2>
 
     {{$t := .title}}
     <h4>{{$t}}</h4>

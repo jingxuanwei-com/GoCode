@@ -1,7 +1,9 @@
 package main
 
 import (
+	"awesomeProject/model"
 	"awesomeProject/router"
+	"html/template"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,6 +12,11 @@ import (
 func main() {
 	// 创建默认的gin引擎
 	r := gin.Default()
+
+	//自定义模板函数
+	r.SetFuncMap(template.FuncMap{
+		"UnixToTime": model.UnixToTime,
+	})
 
 	// 加载模板文件，支持多层目录结构
 	r.LoadHTMLGlob("templates/**/*")

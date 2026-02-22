@@ -1,12 +1,18 @@
 package admin
 
-import "github.com/gin-gonic/gin"
+import (
+	"fmt"
+
+	"github.com/gin-gonic/gin"
+)
 
 type IndexController struct {
 }
 
 func (con IndexController) Index(c *gin.Context) {
-	c.String(200, "管理员用户列表")
+	username, _ := c.Get("user")
+	fmt.Println(username)
+	c.String(200, "管理员用户列表 %v", username)
 }
 
 func (con IndexController) Plist(c *gin.Context) {

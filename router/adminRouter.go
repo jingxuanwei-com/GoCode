@@ -2,12 +2,13 @@ package router
 
 import (
 	"awesomeProject/controller/admin"
+	"awesomeProject/middleware"
 
 	"github.com/gin-gonic/gin"
 )
 
 func AdminRouterInit(r *gin.Engine) {
-	adminRouter := r.Group("/admin")
+	adminRouter := r.Group("/admin", middleware.InitMiddleware)
 	{
 		adminRouter.GET("", admin.IndexController{}.Index)
 

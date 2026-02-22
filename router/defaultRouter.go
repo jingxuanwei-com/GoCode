@@ -8,6 +8,7 @@ import (
 
 func DefaultRouterInit(r *gin.Engine) {
 	defaultRouter := r.Group("/")
+
 	{
 		defaultRouter.GET("", nannanwu.DefaultController{}.Index)
 		defaultRouter.GET("/article", nannanwu.DefaultController{}.Article)

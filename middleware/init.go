@@ -19,4 +19,6 @@ func InitMiddleware(c *gin.Context) {
 		time.Sleep(1 * time.Second)
 		fmt.Println("统计信息" + cCp.Request.URL.Path)
 	}()
+
+	c.Next()
 }

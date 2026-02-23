@@ -12,6 +12,8 @@ func AdminRouterInit(r *gin.Engine) {
 	{
 		adminRouter.GET("", admin.IndexController{}.Index)
 
+		adminRouter.GET("/user/add", admin.UserController{}.Add)
+
 		adminRouter.GET("/plist", admin.IndexController{}.Plist)
 
 		adminRouter.GET("/login", admin.IndexController{}.Login)
@@ -19,6 +21,8 @@ func AdminRouterInit(r *gin.Engine) {
 		adminRouter.GET("/article", admin.ArticleController{}.Article)
 
 		adminRouter.GET("/user", admin.UserController{}.Index)
+
+		adminRouter.POST("/user/doUpload", admin.UserController{}.DoUpload)
 
 		adminRouter.GET("/user/:id", admin.UserController{}.Show)
 	}

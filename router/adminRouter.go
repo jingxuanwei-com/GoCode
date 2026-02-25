@@ -24,6 +24,10 @@ func AdminRouterInit(r *gin.Engine) {
 
 		adminRouter.POST("/user/doUpload", admin.UserController{}.DoUpload)
 
+		adminRouter.GET("/user/edit", admin.UserController{}.Edit)
+
+		adminRouter.POST("/user/doEdit", admin.UserController{}.DoEdit)
+
 		adminRouter.GET("/user/:id", admin.UserController{}.Show)
 	}
 }

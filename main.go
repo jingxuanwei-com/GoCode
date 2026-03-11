@@ -5,6 +5,8 @@ import (
 	"awesomeProject/router"
 	"html/template"
 
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 )
 
@@ -23,6 +25,9 @@ func main() {
 
 	// 配置静态文件目录，将./static目录映射到URL路径/static
 	r.Static("/static", "./static")
+
+	//配置session中间件
+	r.Use(sessions.Sessions("my1session", cookie.NewStore([]byte("secre111111"))))
 
 	router.AdminRouterInit(r)
 

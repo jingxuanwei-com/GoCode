@@ -1,6 +1,8 @@
 package admin
 
 import (
+	"awesomeProject/model"
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -12,11 +14,41 @@ type UserController struct {
 }
 
 func (con UserController) Index(c *gin.Context) {
-	con.Success(c)
+	//查询数据库
+	userList := []model.User{}
+
+	model.DB.Find(&userList)
+	c.JSON(200, userList)
+	//con.Success(c)
 }
 
 func (con UserController) Add(c *gin.Context) {
-	c.HTML(200, "admin/useradd", gin.H{})
+	user := model.User{
+		Name:     "test",
+		Age:      18,
+		Email:    "test@example.com",
+		Password: "password",
+	}
+	model.DB.Create(&user)
+	c.JSON(200, user)
+	fmt.Println(user)
+	c.String(200, "用户添加成功")
+}
+
+func (con UserController) Edit(c *gin.Context) {
+	user := model.User{Id: 1}
+	model.DB.Find(&user)
+	user.Age = 19
+	user.Password = "6666"
+	user.Name = "哈哈哈"
+	model.DB.Save(&user)
+	c.JSON(200, user)
+}
+
+func (con UserController) Delete(c *gin.Context) {
+	user := model.User{Id: 1}
+	model.DB.Delete(&user)
+	c.String(200, "用户删除成功")
 }
 
 func (con UserController) Show(c *gin.Context) {
@@ -86,8 +118,4 @@ func (con UserController) DoEdit(c *gin.Context) {
 		"dst":      dst,
 		"dst1":     dst1,
 	})
-}
-
-func (con UserController) Edit(c *gin.Context) {
-	c.HTML(200, "admin/useredit", gin.H{})
 }

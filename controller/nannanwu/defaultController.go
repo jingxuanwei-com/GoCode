@@ -4,6 +4,7 @@ import (
 	"awesomeProject/model"
 	"fmt"
 
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,6 +14,14 @@ type DefaultController struct {
 }
 
 func (con DefaultController) Index(c *gin.Context) {
+	//设置session
+	session := sessions.Default(c)
+	session.Set("username", "张三sessions")
+	err := session.Save()
+	if err != nil {
+		return
+	}
+
 	fmt.Println(model.UnixToTime(1629788418))
 	//设置cookie
 	c.SetCookie("username", "张三", 3600, "/", "", false, false)
@@ -22,13 +31,17 @@ func (con DefaultController) Index(c *gin.Context) {
 	})
 }
 func (con DefaultController) Article(c *gin.Context) {
-	//获取cookie
-	username, err := c.Cookie("username")
-	if err != nil {
-		c.String(200, "获取cookie失败")
-		return
-	}
-	c.String(200, "cookie="+username)
+	//获取session
+	session := sessions.Default(c)
+	username := session.Get("username")
+	c.String(200, "session=%v", username)
+	////获取cookie
+	//username, err := c.Cookie("username")
+	//if err != nil {
+	//	c.String(200, "获取cookie失败")
+	//	return
+	//}
+	//c.String(200, "cookie="+username)
 
 }
 

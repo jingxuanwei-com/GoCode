@@ -20,8 +20,8 @@ func init() {
 		return
 	}
 
-	// 自动创建数据表
-	err = DB.AutoMigrate(&User{})
+	// 自动创建所有不存在的表
+	err = DB.AutoMigrate(&User{}, &Article{}, &Nav{}, &ArticleCate{})
 	if err != nil {
 		fmt.Println("数据表迁移失败:", err)
 	} else {

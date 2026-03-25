@@ -1,12 +1,12 @@
 package model
 
 type User struct {
-	Id       int
-	Name     string
-	Age      int
-	Email    string
-	Password string
-	AddTime  int
+	Id       int    `json:"id"`
+	Name     string `json:"name"`
+	Age      int    `json:"age"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
+	AddTime  int    `json:"add_time"`
 }
 
 func (User) TableName() string {

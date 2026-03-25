@@ -22,7 +22,7 @@ func AdminRouterInit(r *gin.Engine) {
 
 		adminRouter.GET("/login", admin.IndexController{}.Login)
 
-		adminRouter.GET("/article", admin.ArticleController{}.Article)
+		adminRouter.GET("/article", admin.ArticleController{}.Index)
 
 		adminRouter.GET("/user", admin.UserController{}.Index)
 
